@@ -127,11 +127,12 @@ export const login = async (req, res) => {
     // Set the token as a cookie
     return res
       .cookie("token", token, {
-        httpOnly: true, // Prevents JavaScript access
-        sameSite: "Strict", // CSRF protection
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
-        path: "/", // Ensures it’s accessible to all routes
-        secure: process.env.NODE_ENV === "production", // Secure only on HTTPS
+        httpOnly: true, // JS se access nahi ho sakta
+        sameSite: "lax", // Cross-origin requests allow karta hai with 'lax'
+        maxAge: 24 * 60 * 60 * 1000, // 1 day expiry
+        path: "/", // Ensure karta hai ke saare routes pe accessible ho
+        secure: true, // HTTPS pe hi chalega
+        domain: ".inspectunivibe.com", // Subdomains allow karne ke liye
       })
       .json({
         message: `Welcome ${user.name}`,
