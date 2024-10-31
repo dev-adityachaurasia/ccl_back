@@ -14,44 +14,43 @@ import {
   savePost,
   isSaved,
 } from "../controllers/post.controller.js";
-import isAuthantication from "../middlewares/isAuthinticated.js";
 
 const router = express.Router();
 
 // Create a new post
-router.post("/posts", isAuthantication, upload.single("post"), newPost);
+router.post("/posts", upload.single("post"), newPost);
 
 // Fetch all posts
-router.get("/all-posts", isAuthantication, getAllPost);
+router.get("/all-posts", getAllPost);
 
 // Fetch posts by specific user
 router.get("/users/:username/posts", getUserPost);
 
 // Update a specific post by ID
-router.put("/posts/:postid", isAuthantication, editPost);
+router.put("/posts/:postid", editPost);
 
 // Like a post by ID
-router.post("/posts/:postid/like", isAuthantication, likePost);
+router.post("/posts/:postid/like", likePost);
 
 // Dislike a post by ID
-router.post("/posts/:postid/dislike", isAuthantication, dislikePost);
+router.post("/posts/:postid/dislike", dislikePost);
 
 // Fetch comments for a specific post
-router.get("/posts/:postid/comments", isAuthantication, getComments);
+router.get("/posts/:postid/comments", getComments);
 
 // Add a comment to a specific post
-router.post("/posts/:postid/comments", isAuthantication, commentPost);
+router.post("/posts/:postid/comments", commentPost);
 
 // Delete a specific post by ID
-router.delete("/posts/:postid", isAuthantication, deletePost);
+router.delete("/posts/:postid", deletePost);
 
 // Save a specific post by ID
-router.post("/posts/:postid/save", isAuthantication, savePost);
+router.post("/posts/:postid/save", savePost);
 
 // Check if a post is liked by the authenticated user
-router.post("/posts/:postid/is-liked", isAuthantication, isLiked);
+router.post("/posts/:postid/is-liked", isLiked);
 
 // Check if a post is saved by the authenticated user
-router.post("/posts/:postid/is-saved", isAuthantication, isSaved);
+router.post("/posts/:postid/is-saved", isSaved);
 
 export default router;

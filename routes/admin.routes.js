@@ -25,7 +25,12 @@ router.delete("/results/:id", isAuthantication, deleteResult); // Delete a resul
 router.get("/results", isAuthantication, getResults); // Fetch all results
 
 // Question paper-related routes
-router.post("/question-papers", isAuthantication, upload.single("post"), uploadQuestionPaper); // Upload question paper
+router.post(
+  "/question-papers",
+  isAuthantication,
+  upload.single("post"),
+  uploadQuestionPaper
+); // Upload question paper
 router.put("/question-papers/:id", isAuthantication, editQuestionPaper); // Edit a question paper
 router.delete("/question-papers/:id", isAuthantication, deleteQuestionPaper); // Delete a question paper
 router.get("/question-papers", isAuthantication, getQuestionPapers); // Fetch all question papers
