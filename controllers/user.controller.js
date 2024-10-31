@@ -128,7 +128,7 @@ export const login = async (req, res) => {
     return res
       .cookie("token", token, {
         httpOnly: true, // JS se access nahi ho sakta
-        sameSite: "lax", // Cross-origin requests allow karta hai with 'lax'
+        sameSite: "none", // Cross-origin requests allow karta hai with 'none'
         maxAge: 24 * 60 * 60 * 1000, // 1 day expiry
         path: "/", // Ensure karta hai ke saare routes pe accessible ho
         secure: true, // HTTPS pe hi chalega
