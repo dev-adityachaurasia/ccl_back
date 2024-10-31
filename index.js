@@ -11,7 +11,7 @@ import messageRouter from "./routes/message.routes.js";
 dotenv.config({});
 
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: ["https://inspectunivibe.com/", "http://localhost:5173"],
   credentials: true,
 };
 const app = express();
@@ -20,7 +20,9 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
-
+app.get("/", (req, res) => {
+  res.send("Backend is running......");
+});
 app.use("/", postRouter);
 app.use("/", userRouter);
 app.use("/", adminRouter);
