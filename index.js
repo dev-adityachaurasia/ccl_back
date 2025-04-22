@@ -14,16 +14,23 @@ const corsOptions = {
   origin: ["http://localhost:5173"],
   credentials: true,
 };
+
 const app = express();
+
+// CORS middleware
+app.use(cors(corsOptions));
+
+// Handle preflight requests globally
+app.options("*", cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Backend is running......");
 });
 
-app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
+
 app.use("/", postRouter);
 app.use("/", userRouter);
 app.use("/", adminRouter);
