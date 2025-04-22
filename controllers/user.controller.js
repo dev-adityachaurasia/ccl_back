@@ -1,6 +1,6 @@
-import { User } from "../modules/user.model.js";
-import { Post } from "../modules/post.model.js";
-import { Comment } from "../modules/comment.model.js";
+import { User } from "../models/user.model.js";
+import { Post } from "../models/post.model.js";
+import { Comment } from "../models/comment.model.js";
 import bcrypt from "bcrypt";
 import { decodeToken, getToken } from "../utils/generate-token.js";
 import cloudinary from "../utils/cloudinary.js";
@@ -34,7 +34,7 @@ export const signIn = async (req, res) => {
         res
           .cookie("token", token, {
             httpOnly: true,
-            sameSit: "strict",
+            sameSit: "lax",
             maxAge: 1 * 24 * 60 * 60 * 1000,
           })
           .json({
@@ -123,20 +123,18 @@ export const login = async (req, res) => {
 
     // Generate token
     const token = getToken(user);
+    console.log(token);
 
     // Set the token as a cookie
     return res
       .cookie("token", token, {
-        httpOnly: true, // JS se access nahi ho sakta
-        sameSite: "none", // Cross-origin requests allow karta hai with 'none'
+        sameSite: "lax", // Cross-origin requests allow karta hai with 'none'
         maxAge: 24 * 60 * 60 * 1000, // 1 day expiry
-        path: "/", // Ensure karta hai ke saare routes pe accessible ho
-        secure: true, // HTTPS pe hi chalega
-        domain: ".inspectunivibe.com", // Subdomains allow karne ke liye
       })
       .json({
         message: `Welcome ${user.name}`,
         success: true,
+        token,
         user,
       });
   } catch (error) {
@@ -147,14 +145,12 @@ export const login = async (req, res) => {
     });
   }
 };
-
-// Logout Function
 export const logout = (req, res) => {
   try {
     return res
       .cookie("token", "", {
         httpOnly: true,
-        sameSite: "Strict",
+        sameSite: "lax",
         expires: new Date(0), // Expire the cookie immediately
         path: "/", // Same path as in login to ensure it’s removed
         secure: process.env.NODE_ENV === "production", // Secure only on HTTPS
@@ -171,7 +167,6 @@ export const logout = (req, res) => {
     });
   }
 };
-
 export const getProfile = async (req, res) => {
   try {
     const userId = req.params.username;
@@ -185,7 +180,6 @@ export const getProfile = async (req, res) => {
     console.log(error);
   }
 };
-
 export const editProfile = async (req, res) => {
   try {
     const { bio, email, username, branch, college, year } = req.body;
@@ -233,7 +227,6 @@ export const editProfile = async (req, res) => {
     console.log(error);
   }
 };
-
 export const suggestUser = async (req, res) => {
   try {
     const userId = req.id;
@@ -258,7 +251,6 @@ export const suggestUser = async (req, res) => {
     console.log(error);
   }
 };
-
 export const followUnfollow = async (req, res) => {
   try {
     const userId = await User.findById(req.id);
@@ -315,7 +307,6 @@ export const followUnfollow = async (req, res) => {
     console.log(error);
   }
 };
-
 export const checkUsername = async (req, res) => {
   try {
     const { value } = req.body;
@@ -332,6 +323,7 @@ export const checkUsername = async (req, res) => {
         user,
       });
     }
+    console.log(value);
     return res.status(200).json({
       message: "Username Available",
       isTaken: false,
@@ -365,7 +357,6 @@ export const updatePassword = async (req, res) => {
     console.log(error);
   }
 };
-
 export const deleteUser = async (req, res) => {
   try {
     const userId = req.id; // Get user ID from the authenticated request

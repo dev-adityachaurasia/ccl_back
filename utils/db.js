@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const uri = process.env.MONGO_URI;
+    const uri =
+      "mongodb+srv://aadichaurasia00:TzKHfQvFbKm5AG6t@cluster0.iihmv.mongodb.net/UniVibe";
 
     // Ensure the URI is available
     if (!uri) {
@@ -12,7 +13,7 @@ const connectDB = async () => {
     }
 
     // Log the URI for debugging (Remove in production)
-    console.log("Connecting to Database", );
+    console.log("Connecting to Database");
 
     // Connect without deprecated options
     await mongoose.connect(uri);

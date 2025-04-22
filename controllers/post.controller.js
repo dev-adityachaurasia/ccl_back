@@ -1,15 +1,16 @@
-import { Post } from "../modules/post.model.js";
-import { Comment } from "../modules/comment.model.js";
+import { Post } from "../models/post.model.js";
+import { Comment } from "../models/comment.model.js";
 import checkFileType from "../utils/checkingFileType.js";
-import { User } from "../modules/user.model.js";
+import { User } from "../models/user.model.js";
 import cloudinary from "../utils/cloudinary.js";
 
-export const newPost = async (req, res) => {
+export const  newPost = async (req, res) => {
   try {
     const userId = req.id;
     const { caption, member } = req.body;
     const post = req.file;
     const author = await User.findById(userId);
+    console.log(author);  
     const cloudResponce = await checkFileType(post);
 
     const createPost = await Post.create({

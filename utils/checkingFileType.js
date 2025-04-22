@@ -10,7 +10,7 @@ const checkFileType = async (post) => {
     const extname = path.extname(post.originalname).toLowerCase();
 
     // Define image and video extensions
-    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp",".svg"];
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"];
     const videoExtensions = [".mp4", ".avi", ".mov", ".mkv", ".webm", ".flv"];
 
     if (imageExtensions.includes(extname)) {

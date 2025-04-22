@@ -1,5 +1,5 @@
-import { Conversation } from "../modules/conversation.model.js"; // Fixed typo
-import { Message } from "../modules/message.model.js";
+import { Conversation } from "../models/conversation.model.js"; // Fixed typo
+import { Message } from "../models/message.model.js";
 
 // 1. Send a Message
 export const sendMessage = async (req, res) => {

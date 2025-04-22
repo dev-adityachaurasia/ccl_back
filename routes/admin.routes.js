@@ -19,7 +19,7 @@ import {
 const router = express.Router();
 
 // Result-related routes
-router.post("/results", isAuthantication, upload.single("post"), uploadResult); // Upload result
+router.post("results", isAuthantication, upload.single("post"), uploadResult); // Upload result
 router.put("/results/:id", isAuthantication, editResult); // Edit a result
 router.delete("/results/:id", isAuthantication, deleteResult); // Delete a result
 router.get("/results", isAuthantication, getResults); // Fetch all results

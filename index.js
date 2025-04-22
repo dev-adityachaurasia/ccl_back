@@ -11,7 +11,7 @@ import messageRouter from "./routes/message.routes.js";
 dotenv.config({});
 
 const corsOptions = {
-  origin: ["https://inspectunivibe.com", "http://localhost:5173"],
+  origin: ["http://localhost:5173"],
   credentials: true,
 };
 const app = express();

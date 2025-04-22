@@ -1,7 +1,7 @@
-import { Event } from "../modules/event.model.js";
-import { Question } from "../modules/question.model.js";
-import { Result } from "../modules/result.model.js";
-import { User } from "../modules/user.model.js";
+import { Event } from "../models/event.model.js";
+import { Question } from "../models/question.model.js";
+import { Result } from "../models/result.model.js";
+import { User } from "../models/user.model.js";
 import cloudinary from "../utils/cloudinary.js";
 import datauri from "../utils/datauri.js";
 
@@ -12,7 +12,7 @@ export const uploadResult = async (req, res) => {
     const { year, branch, kt, sem, reval } = req.body;
     const post = req.file;
     const admin = await User.findById(userId);
-    if (admin.isadmin) {
+    if (admin) {
       const dataUri = datauri(post);
       let cloudResponce = await cloudinary.uploader.upload(dataUri, {
         resource_type: "auto",
