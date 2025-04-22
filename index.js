@@ -16,13 +16,14 @@ const corsOptions = {
 };
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Backend is running......");
+});
+
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
-app.get("/", (req, res) => {
-  res.send("Backend is running......");
-});
 app.use("/", postRouter);
 app.use("/", userRouter);
 app.use("/", adminRouter);
