@@ -128,6 +128,7 @@ export const login = async (req, res) => {
     // Set the token as a cookie
     return res
       .cookie("token", token, {
+        httpOnly: true,
         sameSite: "lax", // Cross-origin requests allow karta hai with 'none'
         maxAge: 24 * 60 * 60 * 1000, // 1 day expiry
       })

@@ -11,7 +11,10 @@ import messageRouter from "./routes/message.routes.js";
 dotenv.config({});
 
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: [
+    "http://localhost:5173",
+    "https://ccl-back-git-main-dev-adityachaurasias-projects.vercel.app",
+  ],
   credentials: true,
 };
 
