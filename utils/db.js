@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     const uri =
-      "mongodb+srv://aadichaurasia00:TzKHfQvFbKm5AG6t@cluster0.iihmv.mongodb.net/UniVibe";
+      "mongodb+srv://aadichaurasia00:TzKHfQvFbKm5AG6t@cluster0.iihmv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
     // Ensure the URI is available
     if (!uri) {
