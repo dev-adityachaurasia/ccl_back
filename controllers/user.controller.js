@@ -12,6 +12,9 @@ export const signIn = async (req, res) => {
     const { username, email, name, password, branch, district, college, year } =
       req.body;
     const user = await User.findOne({ email: email });
+
+    console.log("Hello");
+
     if (user) {
       return res.status(400).json({
         message: "Already have account",
